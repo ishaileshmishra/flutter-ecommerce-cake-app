@@ -1,5 +1,4 @@
 import 'package:cake_corner/views/cart/cart.dart';
-import 'package:cake_corner/views/home/home.component.dart';
 import 'package:cake_corner/views/home/home.dart';
 import 'package:cake_corner/views/profile/profile.dart';
 import 'package:flutter/cupertino.dart';
