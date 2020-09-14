@@ -41,33 +41,41 @@ Row buildPageActionbar(BuildContext context, String stringTitle) {
 }
 
 void _modalBottomSheetMenu(BuildContext context) {
-  showModalBottomSheet(
-      context: context,
-      builder: (builder) {
-        return new Container(
-          height: 350.0,
-          color: Colors.transparent, //could change this to Color(0xFF737373),
-          //so you don't have to change MaterialApp canvasColor
-          child: new Container(
-              decoration: new BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: new BorderRadius.only(
-                      topLeft: const Radius.circular(10.0),
-                      topRight: const Radius.circular(10.0))),
-              child: Expanded(
-                child: Container(
-                  height: 40,
-                  child: new ListView.builder(
-                    scrollDirection: Axis.vertical,
-                    itemCount: CakeService().cakeCategories.length,
-                    itemBuilder: (context, index) {
-                      return buildCakeCategory(index);
-                    },
+  showModalBottomSheet<void>(
+    context: context,
+    backgroundColor: Colors.white,
+    builder: (BuildContext context) {
+      return Container(
+        height: double.infinity,
+        child: ListView.builder(
+          itemCount: CakeService().cakeCategories.length,
+          shrinkWrap: true,
+          itemBuilder: (BuildContext context, int index) {
+            return Card(
+              elevation: 2,
+              child: new Container(
+                padding: EdgeInsets.all(0),
+                child: ListTile(
+                  leading: CircleAvatar(
+                    backgroundColor: Colors.red.shade200,
+                    child: Icon(
+                      Icons.cake,
+                      color: Colors.white,
+                    ),
                   ),
+                  title: Text(CakeService().cakeCategories[index]),
+                  onTap: () => {
+                    Navigator.pop(context),
+                    print("Tapped: ${CakeService().cakeCategories[index]}")
+                  },
                 ),
-              )),
-        );
-      });
+              ),
+            );
+          },
+        ),
+      );
+    },
+  );
 }
 
 Container buildCakeCategory(int index) {
