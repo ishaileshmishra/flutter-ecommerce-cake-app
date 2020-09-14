@@ -15,9 +15,10 @@ class CakeApplication extends StatelessWidget {
         // This makes the visual density adapt to the platform that you run
         // the app on. For desktop platforms, the controls will be smaller and
         // closer together (more dense) than on mobile platforms.
-
+        fontFamily: 'Nunito',
         visualDensity: VisualDensity.adaptivePlatformDensity,
         accentColor: Colors.red.shade200,
+
         //brightness: Brightness.dark
         //appBarTheme: AppBarTheme(elevation: 2, brightness: Brightness.dark),
         //fontFamily: GoogleFont.lato

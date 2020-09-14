@@ -1,4 +1,5 @@
 import 'package:cake_corner/views/cart/cart.dart';
+import 'package:cake_corner/views/home/home.component.dart';
 import 'package:cake_corner/views/home/home.dart';
 import 'package:cake_corner/views/profile/profile.dart';
 import 'package:flutter/cupertino.dart';
@@ -21,11 +22,6 @@ class _PageNavigatorState extends State<PageNavigator> {
     ];
 
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => print("object"),
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ),
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,

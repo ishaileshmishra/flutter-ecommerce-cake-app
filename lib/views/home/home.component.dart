@@ -1,6 +1,7 @@
 import 'package:cake_corner/models/cakes.dart';
 import 'package:cake_corner/service/cake.service.dart';
 import 'package:cake_corner/views/details/ProductDetail.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -14,33 +15,45 @@ GridView buildGridView(Orientation orientation, List<Cakes> availCakes) {
       });
 }
 
-Row buildPageActionbar(BuildContext context, String stringTitle) {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+Widget buildPageActionbar(
+    BuildContext context, String greeting, String stringTitle, String urlIcon) {
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      Text(
-        stringTitle,
-        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
-      ),
-      CircleAvatar(
-        backgroundColor: Colors.grey.shade300,
-        radius: 25,
-        child: GestureDetector(
-          onTap: () {
-            _modalBottomSheetMenu(context);
-          },
-          child: Icon(
-            Icons.filter_list,
-            size: 30,
-            color: Colors.red.shade400,
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "$greeting,",
+                style: TextStyle(fontSize: 18),
+              ),
+              SizedBox(
+                height: 2,
+              ),
+              Text(
+                stringTitle,
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+              )
+            ],
           ),
-        ),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(100.0),
+            child: Image.network(
+              urlIcon,
+              height: 60.0,
+              width: 60.0,
+            ),
+          ),
+        ],
       )
     ],
   );
 }
 
-void _modalBottomSheetMenu(BuildContext context) {
+void modalBottomSheetMenu(BuildContext context) {
   showModalBottomSheet<void>(
     context: context,
     backgroundColor: Colors.white,
@@ -159,7 +172,8 @@ Widget buildCakeGridItem(BuildContext context, Cakes cake) {
                   ))),
     },
     child: Card(
-      elevation: 5,
+      elevation: 2,
+      shape: Border.all(width: 1, color: Colors.white),
       color: Colors.white,
       child: new GridTile(
         footer: Container(

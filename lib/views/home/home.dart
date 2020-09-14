@@ -20,14 +20,21 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.grey.shade200,
 
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => modalBottomSheetMenu(context),
+        tooltip: 'Increment',
+        child: Icon(Icons.filter_list),
+      ),
+
       body: SafeArea(
         child: Container(
           padding: EdgeInsets.all(10),
           child: Column(
             children: [
-              SizedBox(height: 40),
+              SizedBox(height: 20),
               //Cake And Filter Row Place Of The Actionbar
-              buildPageActionbar(context, widget.title),
+              buildPageActionbar(context, "Hello", "Shailesh!",
+                  "https://pbs.twimg.com/profile_images/1240559121012625408/D2qvaJoR_400x400.jpg"),
               //Provide vertical Space
               SizedBox(height: 20),
 
