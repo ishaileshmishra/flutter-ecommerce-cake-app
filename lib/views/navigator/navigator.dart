@@ -30,7 +30,8 @@ class _PageNavigatorState extends State<PageNavigator> {
           // Respond to item press.
           print("Which index is tapped: $value");
           setState(() => _currentIndex = value);
-        }, // new // this will be set when a new tab is tapped
+        },
+        // new // this will be set when a new tab is tapped
         items: [
           new BottomNavigationBarItem(
             icon: new Icon(
