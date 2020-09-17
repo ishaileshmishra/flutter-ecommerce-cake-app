@@ -1,4 +1,4 @@
-# cake_corner
+# CakeCornerApplication
 
 A new Flutter project.
 
