@@ -51,6 +51,7 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             children: [
               SizedBox(height: 20),
+
               //Cake And Filter Row Place Of The Actionbar
               buildPageActionbar(context, "Welcome To,", "Cake Corner.",
                   "https://pbs.twimg.com/profile_images/1240559121012625408/D2qvaJoR_400x400.jpg"),

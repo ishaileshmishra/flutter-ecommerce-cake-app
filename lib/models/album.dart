@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 
 Future<List<Album>> fetchAlbums() async {
-  String url = 'https://api.pexels.com/v1/search?query=cake';
+  String url = 'https://api.pexels.com/v1/search?query=cakes';
   String token = '563492ad6f91700001000001d823a46fa27543d99343990fe281a219';
   final response = await http.get(url, headers: {
     'Content-Type': 'application/json',

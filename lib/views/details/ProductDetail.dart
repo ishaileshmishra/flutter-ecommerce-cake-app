@@ -1,6 +1,7 @@
 import 'package:cake_corner/models/album.dart';
 import 'package:cake_corner/views/details/detail.component.dart';
 import 'package:flutter/material.dart';
+import 'package:progressive_image/progressive_image.dart';
 
 class ProductDetail extends StatelessWidget {
   ProductDetail({Key key, this.album}) : super(key: key);
@@ -18,7 +19,19 @@ class ProductDetail extends StatelessWidget {
             children: [
               buildActionbarCakeDetails(context),
               vPutMargin(),
-              Container(child: Image.network(album.photos.large)),
+              Container(
+                child: ProgressiveImage(
+                  fit: BoxFit.cover,
+                  placeholder: AssetImage('assets/icons/placeholder.png'),
+                  // size: 1.87KB
+                  thumbnail: NetworkImage(
+                      'https://www.slingshotvoip.com/wp-content/uploads/2019/12/placeholder.png'),
+                  // size: 1.29MB
+                  image: NetworkImage(album.photos.landscape),
+                  height: 250,
+                  width: double.infinity,
+                ),
+              ),
               vPutMargin(),
               _buildTitleText(),
               vPutMargin(),
