@@ -1,4 +1,4 @@
-import 'package:cake_corner/views/home/home.component.dart';
+import 'package:cake_corner/views/home/Component.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -60,41 +60,37 @@ class _CartPageState extends State<CartPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Text(
+                "Sample Chocolate Cake",
+                style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 10,
+              ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    "Sample Chocolate Cake",
+                    "Quantity: 2",
                     style: TextStyle(
                         fontSize: 15,
                         color: Colors.black,
-                        fontWeight: FontWeight.bold),
+                        fontWeight: FontWeight.normal),
                   ),
                   SizedBox(
                     width: 10,
                   ),
                   Text(
-                    "INR 23.90",
+                    "Color: red",
                     style: TextStyle(
                         fontSize: 15,
                         color: Colors.black,
-                        fontWeight: FontWeight.bold),
-                  )
+                        fontWeight: FontWeight.normal),
+                  ),
                 ],
-              ),
-              Text(
-                "Quantity: 2",
-                style: TextStyle(
-                    fontSize: 15,
-                    color: Colors.black,
-                    fontWeight: FontWeight.normal),
-              ),
-              Text(
-                "Color: red",
-                style: TextStyle(
-                    fontSize: 15,
-                    color: Colors.black,
-                    fontWeight: FontWeight.normal),
               ),
               SizedBox(
                 height: 10,
@@ -121,6 +117,9 @@ class _CartPageState extends State<CartPage> {
           "https://i.dlpng.com/static/png/7280052_preview.png",
           color: Colors.red.shade200,
           fit: BoxFit.cover,
+          height: 60,
+          width: 60,
+          alignment: Alignment.center,
         ),
       ),
     );

@@ -1,5 +1,7 @@
+import 'package:cake_corner/models/album.dart';
 import 'package:cake_corner/service/cake.service.dart';
-import 'package:cake_corner/views/home/home.component.dart';
+import 'package:cake_corner/views/home/Component.dart';
+import 'package:cake_corner/views/home/StandardStaggeredGrid.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -13,9 +15,26 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List<Album> listOfAlbums = [];
+
+  @override
+  void initState() {
+    super.initState();
+    var fetchAlbums2 = fetchAlbums();
+    fetchAlbums2.then((response) {
+      setState(() {
+        listOfAlbums = response;
+      });
+
+      print('Albums $listOfAlbums');
+    }).catchError((error) {
+      print('Error $error');
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    final orientation = MediaQuery.of(context).orientation;
+    //final orientation = MediaQuery.of(context).orientation;
 
     return Scaffold(
       backgroundColor: Colors.grey.shade200,
@@ -33,7 +52,7 @@ class _HomePageState extends State<HomePage> {
             children: [
               SizedBox(height: 20),
               //Cake And Filter Row Place Of The Actionbar
-              buildPageActionbar(context, "Hello", "Shailesh!",
+              buildPageActionbar(context, "Welcome To,", "Cake Corner.",
                   "https://pbs.twimg.com/profile_images/1240559121012625408/D2qvaJoR_400x400.jpg"),
               //Provide vertical Space
               SizedBox(height: 20),
@@ -54,8 +73,9 @@ class _HomePageState extends State<HomePage> {
               //Create ListView/GridView For The Cakes
               //That contains all the available spaces
               Expanded(
-                  child: buildGridView(
-                      orientation, CakeService().getAvailCakes())),
+                  child: InstagramSearchGrid(
+                albums: listOfAlbums,
+              )), //buildGridView(orientation, listOfAlbums)
             ],
           ),
         ),

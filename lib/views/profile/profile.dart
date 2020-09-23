@@ -54,12 +54,12 @@ class _ProfilePageState extends State<ProfilePage> {
                   decoration: BoxDecoration(
                       color: Colors.grey.shade300,
                       borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(50),
-                          topRight: Radius.circular(50))),
+                          topLeft: Radius.circular(30),
+                          topRight: Radius.circular(30))),
                   height: double.minPositive,
                   width: double.infinity,
                   child: Container(
-                    padding: EdgeInsets.all(15),
+                    padding: EdgeInsets.all(8),
                     child: ListView.builder(
                         itemCount: CakeService().getUserOptions().length,
                         itemBuilder: (BuildContext context, int index) {

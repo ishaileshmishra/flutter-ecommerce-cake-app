@@ -1,11 +1,11 @@
-import 'package:cake_corner/models/cakes.dart';
+import 'package:cake_corner/models/album.dart';
 import 'package:cake_corner/views/details/detail.component.dart';
 import 'package:flutter/material.dart';
 
 class ProductDetail extends StatelessWidget {
-  ProductDetail({Key key, this.cake}) : super(key: key);
+  ProductDetail({Key key, this.album}) : super(key: key);
 
-  final Cakes cake;
+  final Album album;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class ProductDetail extends StatelessWidget {
             children: [
               buildActionbarCakeDetails(context),
               vPutMargin(),
-              Container(child: Image.network(cake.url)),
+              Container(child: Image.network(album.photos.large)),
               vPutMargin(),
               _buildTitleText(),
               vPutMargin(),
@@ -83,16 +83,16 @@ class ProductDetail extends StatelessWidget {
       height: 35,
       child: ListView.builder(
           scrollDirection: Axis.horizontal,
-          itemCount: cake.weights.length,
+          itemCount: 2,
           itemBuilder: (context, index) {
-            return weightText(cake.weights[index].toString());
+            return weightText('1.5');
           }),
     );
   }
 
   Text _buildDescriptionText() {
     return Text(
-      cake.description,
+      album.photographer,
       style: TextStyle(fontSize: 15),
       maxLines: 4,
     );
@@ -100,7 +100,7 @@ class ProductDetail extends StatelessWidget {
 
   Text _buildTitleText() {
     return Text(
-      cake.title,
+      album.photographer,
       style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
     );
   }

@@ -1,17 +1,17 @@
-import 'package:cake_corner/models/cakes.dart';
+import 'package:cake_corner/models/album.dart';
 import 'package:cake_corner/service/cake.service.dart';
 import 'package:cake_corner/views/details/ProductDetail.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-GridView buildGridView(Orientation orientation, List<Cakes> availCakes) {
+GridView buildGridView(Orientation orientation, List<Album> album) {
   return GridView.builder(
-      itemCount: availCakes.length,
+      itemCount: album.length,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: (orientation == Orientation.portrait) ? 2 : 3),
       itemBuilder: (BuildContext context, int index) {
-        return buildCakeGridItem(context, availCakes[index]); //buildCakeCard();
+        return buildCakeGridItem(context, album[index]); //buildCakeCard();
       });
 }
 
@@ -161,40 +161,44 @@ Card buildCakeCard() {
   );
 }
 
-Widget buildCakeGridItem(BuildContext context, Cakes cake) {
+Widget buildCakeGridItem(BuildContext context, Album album) {
   return GestureDetector(
     onTap: () => {
       Navigator.push(
           context,
           MaterialPageRoute(
               builder: (context) => ProductDetail(
-                    cake: cake,
+                    album: album,
                   ))),
     },
-    child: Card(
-      elevation: 2,
-      shape: Border.all(width: 1, color: Colors.white),
-      color: Colors.white,
-      child: new GridTile(
-        footer: Container(
-          color: Colors.white,
-          child: Padding(
-            padding: EdgeInsets.all(8),
-            child: Text(
-              cake.title,
-              maxLines: 1,
-              style: TextStyle(fontSize: 15),
-            ),
+    child: buildCardGrid(album),
+  );
+}
+
+Card buildCardGrid(Album album) {
+  return Card(
+    elevation: 2,
+    shape: Border.all(width: 1, color: Colors.white),
+    color: Colors.white,
+    child: new GridTile(
+      footer: Container(
+        color: Colors.white,
+        child: Padding(
+          padding: EdgeInsets.all(8),
+          child: Text(
+            album.photographer,
+            maxLines: 1,
+            style: TextStyle(fontSize: 15),
           ),
         ),
-        child: Padding(
-          padding: EdgeInsets.all(0),
-          child: Image.network(
-            cake.url,
-            fit: BoxFit.cover,
-          ),
-        ), //just for testing, will fill with image later
       ),
+      child: Padding(
+        padding: EdgeInsets.all(0),
+        child: Image.network(
+          album.photos.small,
+          fit: BoxFit.cover,
+        ),
+      ), //just for testing, will fill with image later
     ),
   );
 }
