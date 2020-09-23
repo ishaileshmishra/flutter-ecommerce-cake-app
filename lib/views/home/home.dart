@@ -7,9 +7,7 @@ import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.title}) : super(key: key);
-
   final String title;
-
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -25,8 +23,6 @@ class _HomePageState extends State<HomePage> {
       setState(() {
         listOfAlbums = response;
       });
-
-      print('Albums $listOfAlbums');
     }).catchError((error) {
       print('Error $error');
     });
@@ -37,11 +33,9 @@ class _HomePageState extends State<HomePage> {
     //final orientation = MediaQuery.of(context).orientation;
 
     return Scaffold(
-      backgroundColor: Colors.grey.shade200,
-
       floatingActionButton: FloatingActionButton(
-        onPressed: () => modalBottomSheetMenu(context),
-        tooltip: 'Increment',
+        onPressed: () => modalBottomSheetMenu(listOfAlbums, context),
+        tooltip: 'filter',
         child: Icon(Icons.filter_list),
       ),
 
@@ -50,12 +44,20 @@ class _HomePageState extends State<HomePage> {
           padding: EdgeInsets.all(10),
           child: Column(
             children: [
-              SizedBox(height: 20),
-
-              //Cake And Filter Row Place Of The Actionbar
-              buildPageActionbar(context, "Welcome To,", "Cake Corner.",
+              //
+              // building actionbar of the Home page
+              buildPageActionbar(
+                  context,
+                  "Hi Martin",
+                  "What do you like to eat?",
                   "https://pbs.twimg.com/profile_images/1240559121012625408/D2qvaJoR_400x400.jpg"),
               //Provide vertical Space
+              SizedBox(height: 20),
+
+              CupertinoTextField(
+                placeholder: "or, type what you're looking",
+              ),
+
               SizedBox(height: 20),
 
               //Horizontal listview for categories
