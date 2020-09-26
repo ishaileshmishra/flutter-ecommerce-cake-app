@@ -14,17 +14,28 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<Album> listOfAlbums = [];
+  var isLoading = true;
 
   @override
   void initState() {
     super.initState();
-    var fetchAlbums2 = fetchAlbums();
-    fetchAlbums2.then((response) {
+    var fetch = fetchAlbums();
+    fetch.then((response) {
       setState(() {
         listOfAlbums = response;
+        isLoading = false;
       });
     }).catchError((error) {
-      print('Error $error');
+      return Center(
+        child: Text(
+          error.toString(),
+          style: TextStyle(
+              color: Colors.red.shade300,
+              fontSize: 20,
+              fontWeight: FontWeight.bold),
+        ),
+      );
+      //print('Error $error');
     });
   }
 
@@ -48,7 +59,7 @@ class _HomePageState extends State<HomePage> {
               // building actionbar of the Home page
               buildPageActionbar(
                   context,
-                  "Hi Martin",
+                  "\nHi Shailesh",
                   "What do you like to eat?",
                   "https://pbs.twimg.com/profile_images/1240559121012625408/D2qvaJoR_400x400.jpg"),
               //Provide vertical Space
@@ -75,10 +86,18 @@ class _HomePageState extends State<HomePage> {
               SizedBox(height: 20),
               //Create ListView/GridView For The Cakes
               //That contains all the available spaces
-              Expanded(
-                  child: InstagramSearchGrid(
-                albums: listOfAlbums,
-              )), //buildGridView(orientation, listOfAlbums)
+
+              Container(
+                  child: isLoading
+                      ? CircularProgressIndicator(
+                          strokeWidth: 3,
+                          backgroundColor: Colors.deepPurple,
+                        )
+                      : Expanded(
+                          child: InstagramSearchGrid(
+                            albums: listOfAlbums,
+                          ),
+                        )), //buildGridView(orientation, listOfAlbums)
             ],
           ),
         ),

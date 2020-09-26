@@ -1,7 +1,9 @@
 import 'package:cake_corner/models/album.dart';
-import 'package:cake_corner/views/details/detail.component.dart';
+import 'package:cake_corner/views/details/NumberInputWithIncrementDecrement.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:progressive_image/progressive_image.dart';
+import 'package:flutter/services.dart';
+import 'package:smooth_star_rating/smooth_star_rating.dart';
 
 class ProductDetail extends StatelessWidget {
   ProductDetail({Key key, this.album}) : super(key: key);
@@ -10,111 +12,137 @@ class ProductDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+    double roundImage = 50;
+
+    SystemChrome.setEnabledSystemUIOverlays([]);
+
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Container(
-          padding: EdgeInsets.all(12),
-          child: ListView(
+        body: ListView(
+      children: <Widget>[
+        _buildImageContainer(height, roundImage),
+        Container(
+          padding: EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              buildActionbarCakeDetails(context),
-              vPutMargin(),
-              Container(
-                child: ProgressiveImage(
-                  fit: BoxFit.cover,
-                  placeholder: AssetImage('assets/icons/placeholder.png'),
-                  // size: 1.87KB
-                  thumbnail: NetworkImage(
-                      'https://www.slingshotvoip.com/wp-content/uploads/2019/12/placeholder.png'),
-                  // size: 1.29MB
-                  image: NetworkImage(album.photos.landscape),
-                  height: 250,
-                  width: double.infinity,
-                ),
-              ),
-              vPutMargin(),
-              _buildTitleText(),
-              vPutMargin(),
-              _buildDescriptionText(),
-              vPutMargin(),
-              Text(
-                "Select weight:",
-                style: mediumHeading(),
-              ),
-              vPutMargin(),
-              _buildWeightContainer(),
-              vPutMargin(),
-              Text(
-                "Eggless:",
-                style: mediumHeading(),
-              ),
-              vPutMargin(),
-              _buildEggChoiceRow(),
-              vPutMargin(),
-              Text(
-                "Message on cake:",
-                style: mediumHeading(),
-              ),
-              vPutMargin(),
-              textField(),
-              vPutMargin(),
-              Text(
-                "Address:",
-                style: mediumHeading(),
-              ),
-              vPutMargin(),
-              textField(),
-              vPutMargin(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  weightText("Add To Cart"),
-                  selectedWeightText("Buy Now"),
-                ],
-              ),
-              vPutMargin(),
+              _buildTextTitle(),
+              SizedBox(height: 12),
+              _buildRowPriceRating(),
+              SizedBox(height: 12),
+              _buildRowProductCounter(),
+              SizedBox(height: 12),
+              NumberInputWithIncrementDecrement()
             ],
           ),
+        ),
+      ],
+    ));
+  }
+
+  Row _buildRowProductCounter() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        RaisedButton(
+          onPressed: () => {},
+          child: Icon(CupertinoIcons.plus_circled),
+        ),
+        SizedBox(width: 12),
+        Text(
+          "4.8",
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        ),
+        SizedBox(width: 12),
+        RaisedButton(
+          onPressed: () => {},
+          child: Icon(CupertinoIcons.minus_circled),
+        )
+      ],
+    );
+  }
+
+  Row _buildRowPriceRating() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Text(
+          "Price INR: ${((album.photoId) / 1000).toString().split('.')[0]}",
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        ),
+        SizedBox(width: 12),
+        SmoothStarRating(
+            allowHalfRating: false,
+            onRated: (v) {},
+            starCount: 5,
+            rating: 5,
+            size: 20.0,
+            isReadOnly: true,
+            color: Colors.red.shade200,
+            borderColor: Colors.green,
+            spacing: 0.0),
+        Text(
+          "Rating: 4.8",
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        ),
+      ],
+    );
+  }
+
+  Text _buildTextTitle() {
+    return Text(
+      'Staberry Frosted Sprinkles',
+      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+    );
+  }
+
+  Container _buildImageContainer(double height, double roundImage) {
+    return Container(
+      color: Colors.grey.shade200,
+      height: 2 * (height / 3),
+      child: ClipRRect(
+        borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(roundImage),
+            bottomRight: Radius.circular(roundImage)),
+        child: Image.network(
+          album.photos.medium,
+          fit: BoxFit.cover,
         ),
       ),
     );
   }
 
-  Row _buildEggChoiceRow() {
-    return Row(
-      children: [
-        selectedWeightText("Yes"),
-        SizedBox(width: 10),
-        weightText("No"),
+  AppBar _buildAppBar(BuildContext context) {
+    return AppBar(
+      centerTitle: true,
+      title: Text(
+        "Straberry Frosted Sprinkles",
+        style: TextStyle(
+            fontSize: 20, color: Colors.blueGrey, fontWeight: FontWeight.bold),
+      ),
+      elevation: 0,
+      backgroundColor: Colors.white,
+      leading: GestureDetector(
+        onTap: () => Navigator.pop(context),
+        child: Icon(
+          CupertinoIcons.clear_thick,
+          color: Colors.red.shade300,
+        ),
+      ),
+      actions: [
+        Padding(
+          padding: EdgeInsets.only(right: 10),
+          child: GestureDetector(
+            onTap: () => {print('Added to favorite')},
+            child: Icon(
+              CupertinoIcons.heart,
+              color: Colors.grey,
+              size: 30,
+            ),
+          ),
+        ),
       ],
-    );
-  }
-
-  Container _buildWeightContainer() {
-    return Container(
-      width: double.infinity,
-      height: 35,
-      child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: 2,
-          itemBuilder: (context, index) {
-            return weightText('1.5');
-          }),
-    );
-  }
-
-  Text _buildDescriptionText() {
-    return Text(
-      album.photographer,
-      style: TextStyle(fontSize: 15),
-      maxLines: 4,
-    );
-  }
-
-  Text _buildTitleText() {
-    return Text(
-      album.photographer,
-      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
     );
   }
 }
