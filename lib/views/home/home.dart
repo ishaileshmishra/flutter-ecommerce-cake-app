@@ -26,9 +26,12 @@ class _HomePageState extends State<HomePage> {
         isLoading = false;
       });
     }).catchError((error) {
+      setState(() {
+        isLoading = false;
+      });
       return Center(
         child: Text(
-          error.toString(),
+          "We are facing internal issue: ${error.toString()}",
           style: TextStyle(
               color: Colors.red.shade300,
               fontSize: 20,
