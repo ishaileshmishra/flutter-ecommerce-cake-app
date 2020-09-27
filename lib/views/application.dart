@@ -17,7 +17,9 @@ class CakeApplication extends StatelessWidget {
         // the app on. For desktop platforms, the controls will be smaller and
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
-        accentColor: Colors.red.shade200,
+        accentColor: Colors.green.shade900,
+        appBarTheme: AppBarTheme(elevation: 0, brightness: Brightness.light),
+        brightness: Brightness.light,
         textTheme: GoogleFonts.solwayTextTheme(
           Theme.of(context).textTheme,
         ),

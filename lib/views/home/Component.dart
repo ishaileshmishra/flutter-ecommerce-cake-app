@@ -31,10 +31,13 @@ Widget buildPageActionbar(
           ),
           ClipRRect(
             borderRadius: BorderRadius.circular(100.0),
-            child: Image.network(
-              urlIcon,
-              height: 60.0,
-              width: 60.0,
+            child: CircleAvatar(
+              minRadius: 25,
+              backgroundColor: Colors.grey.shade400,
+              child: Icon(
+                CupertinoIcons.shopping_cart,
+                size: 30,
+              ),
             ),
           ),
         ],

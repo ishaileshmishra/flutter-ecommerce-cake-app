@@ -1,5 +1,6 @@
 import 'package:cake_corner/models/album.dart';
-import 'package:cake_corner/views/details/NumberInputWithIncrementDecrement.dart';
+import 'package:cake_corner/models/cakes.dart';
+import 'package:cake_corner/views/cart/cart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -14,51 +15,98 @@ class ProductDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     //double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    double roundImage = 50;
-
+    double roundImage = 100;
     SystemChrome.setEnabledSystemUIOverlays([]);
 
     return Scaffold(
+        backgroundColor: Colors.blueGrey.shade50,
         body: ListView(
-      children: <Widget>[
-        _buildImageContainer(height, roundImage),
+          children: <Widget>[
+            _buildImageContainer(height, roundImage),
+            Container(
+              padding: EdgeInsets.all(18),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildTextTitle(),
+                  SizedBox(height: 12),
+                  _buildRowPriceRating(),
+                  SizedBox(height: 12),
+                  _buildRowProductCounter(context),
+                  SizedBox(height: 12),
+                  Text(
+                    dummyText,
+                    style: TextStyle(
+                      fontSize: 14,
+                    ),
+                  ),
+                ],
+              ),
+              decoration: BoxDecoration(
+                //color: Colors.blue,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(roundImage),
+                ),
+              ),
+            ),
+          ],
+        ));
+  }
+
+  Row _buildRowProductCounter(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
         Container(
-          padding: EdgeInsets.all(20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: Row(
             children: [
-              _buildTextTitle(),
-              SizedBox(height: 12),
-              _buildRowPriceRating(),
-              SizedBox(height: 12),
-              _buildRowProductCounter(),
-              SizedBox(height: 12),
-              NumberInputWithIncrementDecrement()
+              MaterialButton(
+                onPressed: () {
+                  print('Plus btn tapped');
+                },
+                color: Colors.blue,
+                textColor: Colors.white,
+                child: Icon(
+                  CupertinoIcons.plus_circled,
+                  size: 24,
+                ),
+                padding: EdgeInsets.all(10),
+                shape: CircleBorder(),
+              ),
+              Text(
+                "4.8",
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+              MaterialButton(
+                onPressed: () {
+                  print('Minus btn tapped');
+                },
+                color: Colors.blue,
+                textColor: Colors.white,
+                child: Icon(
+                  CupertinoIcons.minus_circled,
+                  size: 24,
+                ),
+                padding: EdgeInsets.all(10),
+                shape: CircleBorder(),
+              ),
             ],
           ),
         ),
-      ],
-    ));
-  }
-
-  Row _buildRowProductCounter() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
         RaisedButton(
-          onPressed: () => {},
-          child: Icon(CupertinoIcons.plus_circled),
+          onPressed: () => {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => CartPage())),
+          },
+          child: Text(
+            'Add To Cart',
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          ),
+          color: Colors.green.shade700,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8.0),
+              side: BorderSide(color: Colors.green)),
         ),
-        SizedBox(width: 12),
-        Text(
-          "4.8",
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-        ),
-        SizedBox(width: 12),
-        RaisedButton(
-          onPressed: () => {},
-          child: Icon(CupertinoIcons.minus_circled),
-        )
       ],
     );
   }
@@ -69,7 +117,7 @@ class ProductDetail extends StatelessWidget {
       children: [
         Text(
           "Price INR: ${((album.photoId) / 1000).toString().split('.')[0]}",
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
         ),
         SizedBox(width: 12),
         SmoothStarRating(
@@ -84,7 +132,7 @@ class ProductDetail extends StatelessWidget {
             spacing: 0.0),
         Text(
           "Rating: 4.8",
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
         ),
       ],
     );
@@ -93,18 +141,19 @@ class ProductDetail extends StatelessWidget {
   Text _buildTextTitle() {
     return Text(
       'Staberry Frosted Sprinkles',
-      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
     );
   }
 
   Container _buildImageContainer(double height, double roundImage) {
     return Container(
-      color: Colors.grey.shade200,
-      height: 2 * (height / 3),
+      //color: Colors.grey.shade200,
+      height: (2 * (height / 3)) - 40,
       child: ClipRRect(
         borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(roundImage),
-            bottomRight: Radius.circular(roundImage)),
+          bottomLeft: Radius.circular(roundImage),
+          // bottomRight: Radius.circular(roundImage)
+        ),
         child: Image.network(
           album.photos.medium,
           fit: BoxFit.cover,
