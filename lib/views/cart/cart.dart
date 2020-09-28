@@ -1,5 +1,4 @@
 import 'package:cake_corner/views/cart/cart.component.dart';
-import 'package:cake_corner/views/home/Component.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
