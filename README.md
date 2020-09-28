@@ -26,12 +26,17 @@ Application would not show images in the release mod
 
 ![File 1](https://github.com/ishaileshmishra/cake-app/blob/master/assets/screenshot/File%201.png?raw=true)
 
-
 ![File 2](https://github.com/ishaileshmishra/cake-app/blob/master/assets/screenshot/File%202.png?raw=true)
-
 
 ![File 3](https://github.com/ishaileshmishra/cake-app/blob/master/assets/screenshot/File%203.png?raw=true)
 
-
 ![File 4](https://github.com/ishaileshmishra/cake-app/blob/master/assets/screenshot/File%204.png?raw=true)
+
+![File 5](https://github.com/ishaileshmishra/cake-app/blob/master/assets/screenshot/File%205.png?raw=true)
+
+![File 6](https://github.com/ishaileshmishra/cake-app/blob/master/assets/screenshot/File%206.png?raw=true)
+
+![File 7](https://github.com/ishaileshmishra/cake-app/blob/master/assets/screenshot/File%207.png?raw=true)
+
+![File 8](https://github.com/ishaileshmishra/cake-app/blob/master/assets/screenshot/File%208.png?raw=true)
 
