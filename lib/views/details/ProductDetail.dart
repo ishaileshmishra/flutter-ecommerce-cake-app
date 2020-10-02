@@ -1,6 +1,6 @@
 import 'package:cake_corner/models/album.dart';
 import 'package:cake_corner/models/cakes.dart';
-import 'package:cake_corner/views/cart/cart.dart';
+import 'package:cake_corner/views/cart/Cart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -159,39 +159,6 @@ class ProductDetail extends StatelessWidget {
           fit: BoxFit.cover,
         ),
       ),
-    );
-  }
-
-  AppBar _buildAppBar(BuildContext context) {
-    return AppBar(
-      centerTitle: true,
-      title: Text(
-        "Straberry Frosted Sprinkles",
-        style: TextStyle(
-            fontSize: 20, color: Colors.blueGrey, fontWeight: FontWeight.bold),
-      ),
-      elevation: 0,
-      backgroundColor: Colors.white,
-      leading: GestureDetector(
-        onTap: () => Navigator.pop(context),
-        child: Icon(
-          CupertinoIcons.clear_thick,
-          color: Colors.red.shade300,
-        ),
-      ),
-      actions: [
-        Padding(
-          padding: EdgeInsets.only(right: 10),
-          child: GestureDetector(
-            onTap: () => {print('Added to favorite')},
-            child: Icon(
-              CupertinoIcons.heart,
-              color: Colors.grey,
-              size: 30,
-            ),
-          ),
-        ),
-      ],
     );
   }
 }

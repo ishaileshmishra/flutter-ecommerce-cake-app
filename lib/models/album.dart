@@ -3,8 +3,12 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
 
-Future<List<Album>> fetchAlbums() async {
-  String url = 'https://api.pexels.com/v1/search?query=cakes&per_page=40';
+Future<List<Album>> fetchAlbums(int pageCount, [String queryString]) async {
+  if (queryString == null) {
+    queryString = 'cakes';
+  }
+  String url =
+      'https://api.pexels.com/v1/search?query=$queryString&per_page=$pageCount';
   String token = '563492ad6f91700001000001d823a46fa27543d99343990fe281a219';
   final response = await http.get(url, headers: {
     'Content-Type': 'application/json',

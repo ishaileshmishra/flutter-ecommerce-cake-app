@@ -1,5 +1,6 @@
 import 'package:cake_corner/service/cake.service.dart';
-import 'package:cake_corner/views/cart/cart.component.dart';
+import 'package:cake_corner/views/profile/Component.dart';
+import 'package:cake_corner/views/profile/ProfileModel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -17,68 +18,67 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.grey.shade100,
+        backgroundColor: Colors.grey.shade300,
         body: Container(
           width: double.infinity,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 20),
+              _buildSpacer(),
               Container(
                 padding: EdgeInsets.all(10),
-                child: buildCartActionbar(
-                    context,
-                    "Profile",
-                    "You can update your profile",
-                    "https://pbs.twimg.com/profile_images/1240559121012625408/D2qvaJoR_400x400.jpg"),
-              ),
-              SizedBox(height: 40),
-              ClipOval(
-                child: Image.network(
-                  "https://pbs.twimg.com/profile_images/1240559121012625408/D2qvaJoR_400x400.jpg",
-                  height: 150.0,
-                  width: 150.0,
+                child: buildActionbar(
+                  context,
+                  "Profile",
+                  "User Profile",
                 ),
               ),
+              _buildSpacer(),
+              _buildClipOval(),
               SizedBox(height: 20),
               Text(
-                "Mr Joker ",
+                "Mr Flutter ",
                 style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
                     color: Colors.black),
               ),
-              SizedBox(height: 10),
+              SizedBox(
+                height: 10,
+              ),
               Text(
                 "A flutter developer",
                 style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 14,
                     fontWeight: FontWeight.bold,
                     color: Colors.grey.shade600),
               ),
-              SizedBox(height: 50),
+              SizedBox(
+                height: 30,
+              ),
               Expanded(
                 child: Container(
                   decoration: BoxDecoration(
-                      color: Colors.grey.shade300,
+                      color: Colors.grey.shade100,
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(30),
                           topRight: Radius.circular(30))),
                   height: double.minPositive,
                   width: double.infinity,
                   child: Container(
-                    padding: EdgeInsets.all(8),
+                    //padding: EdgeInsets.all(8),
                     child: ListView.builder(
-                        itemCount: CakeService().getUserOptions().length,
+                        itemCount: getUserOptions().length,
                         itemBuilder: (BuildContext context, int index) {
                           return ListTile(
-                            leading: CakeService().getUserOptions()[index].icon,
-                            onTap: () => print("object"),
+                            leading: getUserOptions()[index].icon,
+                            onTap: () => showSnackBar(
+                                context, getUserOptions()[index].title),
                             title: Text(
-                              CakeService().getUserOptions()[index].title,
+                              getUserOptions()[index].title,
                               style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.normal,
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                             trailing: Icon(
@@ -97,32 +97,15 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
-  AppBar _buildAppBar() {
-    return AppBar(
-      leading: GestureDetector(
-        //onTap: () => Navigator.pop(context),
-        child: Icon(
-          CupertinoIcons.clear,
-          color: Colors.red,
-          size: 40,
-        ),
+  SizedBox _buildSpacer() => SizedBox(height: 20);
+
+  ClipOval _buildClipOval() {
+    return ClipOval(
+      child: Image.network(
+        "https://pbs.twimg.com/profile_images/1240559121012625408/D2qvaJoR_400x400.jpg",
+        height: 150.0,
+        width: 150.0,
       ),
-      backgroundColor: Colors.grey.shade100,
-      centerTitle: true,
-      title: Text(
-        "My Profile",
-        style: TextStyle(color: Colors.black),
-      ),
-      elevation: 0,
-      actions: [
-        Padding(
-          padding: EdgeInsets.only(right: 10),
-          child: Icon(
-            Icons.more_vert,
-            color: Colors.black,
-          ),
-        )
-      ],
     );
   }
 }
