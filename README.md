@@ -18,3 +18,9 @@ Application might be sluggy in the debug mode
 
 
 <img src="assets/screens/file1.jpg" width="250" height="540"> <img src="assets/screens/file2.jpg" width="250" height="540"> <img src="assets/screens/file3.jpg" width="250" height="540"> <img src="assets/screens/file4.jpg" width="250" height="540">
+
+
+<img src="assets/screens/editorfile1.png"> 
+<img src="assets/screens/editorfile2.png"> 
+<img src="assets/screens/editorfile3.png"> 
+<img src="assets/screens/editorfile4.png">

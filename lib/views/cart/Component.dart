@@ -24,7 +24,6 @@ buildCartActionbar(
           Container(
             child: RichText(
                 text: TextSpan(
-              //text: 'Hello ',
               style: DefaultTextStyle.of(context).style,
               children: <TextSpan>[
                 TextSpan(
@@ -86,7 +85,7 @@ Card buildCartCard(int index) {
 Image _imageIcon(int index) {
   return Image.network(
     getCartModel()[index].icon,
-    color: Colors.grey.shade200,
+    //color: Colors.grey.shade200,
     fit: BoxFit.cover,
     height: 150,
     width: 100,
@@ -97,31 +96,18 @@ Image _imageIcon(int index) {
 Row _rowRemoveEditWidget() {
   return Row(
     children: [
-      RaisedButton(
-        onPressed: () => {},
-        child: Text(
-          'Edit',
-          style: TextStyle(
-              color: Colors.white, fontSize: 12, fontWeight: FontWeight.normal),
-        ),
-        color: Colors.red.shade300,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(18.0), side: BorderSide()),
+      CircleAvatar(
+        child: Center(child: Icon(Icons.add)),
       ),
-      SizedBox(
-        width: 10,
-      ),
-      RaisedButton(
-        onPressed: () => {},
-        elevation: 0,
+      Padding(
+        padding: EdgeInsets.all(10),
         child: Text(
-          'Remove',
-          style: TextStyle(
-              color: Colors.white, fontSize: 12, fontWeight: FontWeight.normal),
+          '1',
+          style: TextStyle(fontSize: 20),
         ),
-        color: Colors.red.shade300,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(18.0), side: BorderSide()),
+      ),
+      CircleAvatar(
+        child: Center(child: Icon(Icons.remove)),
       ),
     ],
   );

@@ -20,7 +20,7 @@ class _CartPageState extends State<CartPage> {
         floatingActionButton: _paymentBtn(),
         backgroundColor: Colors.grey.shade200,
         body: Container(
-          padding: EdgeInsets.all(10),
+          padding: EdgeInsets.all(8),
           child: Column(
             children: [
               applySpacer(),

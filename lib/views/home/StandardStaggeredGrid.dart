@@ -89,7 +89,7 @@ class ImageCard extends StatelessWidget {
                               album: album,
                             ))),
               },
-          child: Image.network(album.photos.small, fit: BoxFit.cover)),
+          child: Image.network(album.photos.large2x, fit: BoxFit.cover)),
     );
   }
 }
