@@ -19,7 +19,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    var fetch = fetchAlbums();
+    var fetch = fetchAlbums(40);
     fetch.then((response) {
       setState(() {
         listOfAlbums = response;
@@ -38,7 +38,6 @@ class _HomePageState extends State<HomePage> {
               fontWeight: FontWeight.bold),
         ),
       );
-      //print('Error $error');
     });
   }
 
@@ -47,32 +46,27 @@ class _HomePageState extends State<HomePage> {
     //final orientation = MediaQuery.of(context).orientation;
 
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => modalBottomSheetMenu(listOfAlbums, context),
-        tooltip: 'filter',
-        child: Icon(Icons.filter_list),
-      ),
+      floatingActionButton: buildHomeFloatingBtn(listOfAlbums, context),
 
       body: SafeArea(
         child: Container(
           padding: EdgeInsets.all(10),
           child: Column(
             children: [
-              //
-              // building actionbar of the Home page
-              buildPageActionbar(
-                  context,
-                  "\nHi Shailesh",
-                  "What do you like to eat?",
-                  "https://pbs.twimg.com/profile_images/1240559121012625408/D2qvaJoR_400x400.jpg"),
+              applySpacer(),
+              buildHomeActionbar(
+                context,
+                "Our",
+                "Products",
+              ),
               //Provide vertical Space
-              SizedBox(height: 20),
+              applySpacer(),
 
               CupertinoTextField(
                 placeholder: "or, type what you're looking",
               ),
 
-              SizedBox(height: 20),
+              applySpacer(),
 
               //Horizontal listview for categories
               Container(
@@ -86,7 +80,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
 
-              SizedBox(height: 20),
+              applySpacer(),
               //Create ListView/GridView For The Cakes
               //That contains all the available spaces
 

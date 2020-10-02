@@ -20,7 +20,7 @@ class CakeApplication extends StatelessWidget {
         accentColor: Colors.green.shade900,
         appBarTheme: AppBarTheme(elevation: 0, brightness: Brightness.light),
         brightness: Brightness.light,
-        textTheme: GoogleFonts.solwayTextTheme(
+        textTheme: GoogleFonts.sansitaTextTheme(
           Theme.of(context).textTheme,
         ),
 

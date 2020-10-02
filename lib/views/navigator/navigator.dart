@@ -1,6 +1,6 @@
-import 'package:cake_corner/views/cart/cart.dart';
+import 'package:cake_corner/views/cart/Cart.dart';
 import 'package:cake_corner/views/home/Home.dart';
-import 'package:cake_corner/views/profile/profile.dart';
+import 'package:cake_corner/views/profile/UserProfile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -24,10 +24,9 @@ class _PageNavigatorState extends State<PageNavigator> {
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        elevation: 8,
+        elevation: 0,
         currentIndex: _currentIndex,
         onTap: (value) {
-          // Respond to item press.
           print("Which index is tapped: $value");
           setState(() => _currentIndex = value);
         },
