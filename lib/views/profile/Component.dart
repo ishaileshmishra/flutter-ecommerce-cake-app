@@ -27,7 +27,7 @@ buildActionbar(
             )),
           ),
           Icon(
-            CupertinoIcons.settings,
+            Icons.assistant_photo_sharp,
             size: 40,
             color: Colors.red.shade700,
           )

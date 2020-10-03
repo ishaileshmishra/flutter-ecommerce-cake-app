@@ -37,6 +37,8 @@ class _PageNavigatorState extends State<PageNavigator> {
               CupertinoIcons.home,
               size: 30,
             ),
+
+            // ignore: deprecated_member_use
             title: new Text('Home'),
           ),
           BottomNavigationBarItem(
@@ -44,6 +46,7 @@ class _PageNavigatorState extends State<PageNavigator> {
               CupertinoIcons.shopping_cart,
               size: 30,
             ),
+            // ignore: deprecated_member_use
             title: new Text('Cart'),
           ),
           BottomNavigationBarItem(
@@ -51,6 +54,7 @@ class _PageNavigatorState extends State<PageNavigator> {
               CupertinoIcons.person,
               size: 30,
             ),
+            // ignore: deprecated_member_use
             title: Text('Profile'),
           )
         ],
